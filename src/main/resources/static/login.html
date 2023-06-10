@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<form id="loginForm">
+    <input type="email" id="email" name="email" placeholder="Email"><br>
+    <input type="password" id="pwd" name="pwd" placeholder="Password"><br>
+    <input type="submit" value="Login">
+</form>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // 阻止表单提交
+
+        // 获取电子邮件和密码
+        var email = document.getElementById('email').value;
+        var pwd = document.getElementById('pwd').value;
+
+        // 创建包含电子邮件和密码的 JSON 对象
+        var loginData = {
+            email: email,
+            pwd: pwd
+        };
+
+        // 发送 JSON 数据
+        axios.post('/user/login', loginData)
+            .then(function(response) {
+                // 登录成功后的处理
+                console.log(response.data);
+            })
+            .catch(function(error) {
+                // 登录失败后的处理
+                console.log(error);
+            });
+    });
+</script>
+</body>
+</html>
