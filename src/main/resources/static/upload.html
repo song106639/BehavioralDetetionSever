@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文件上传</title>
+</head>
+<body>
+<h1>文件上传</h1>
+<input type="file" id="fileInput">
+<button onclick="uploadFile()">上传</button>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    function uploadFile() {
+        var fileInput = document.getElementById('fileInput');
+        var file = fileInput.files[0];
+
+        if (file) {
+            var formData = new FormData();
+            formData.append('file', file);
+
+            axios.post('/detection/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+                .then(function(response) {
+                    console.log('文件上传成功');
+                })
+                .catch(function(error) {
+                    console.log('文件上传失败');
+                });
+        }
+    }
+</script>
+</body>
+</html>
