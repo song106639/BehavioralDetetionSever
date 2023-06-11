@@ -16,6 +16,22 @@ public class VerificationTool {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
+    //手机号验证
+    public static boolean isPhone(String phone){
+        String regex = "1[3|4|5|7|8][0-9]\\d{8}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phone);
+        return matcher.matches();
+    }
+
+    //验证
+    public static boolean isVerification(String verification){
+        String regex = "\\d{6}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(verification);
+        return matcher.matches();
+    }
+
 
     //判断是否登录
     //登录返回真
